@@ -280,9 +280,10 @@ class BezierViewController : UIViewController {
             fallthrough
             
         case .changed:
-            guard let p = dragPoint else { return }
-            bezierView[keyPath: p.keyPath] = recognizer.location(in: bezierView)
-            
+            guard let p = dragPoint, let bv = bezierView else { return }
+            bv[keyPath: p.keyPath] = recognizer.location(in: bv)
+//            bezierView![keyPath: p.keyPath] = recognizer.location(in: bezierView)
+
         case .cancelled, .ended:
             dragPoint = nil
             
